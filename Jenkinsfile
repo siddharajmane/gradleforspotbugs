@@ -18,8 +18,11 @@ pipeline {
         }
     }
     post {
-          def spotbugs = scanForIssues tool: spotBugs(pattern: '**/Spotbug-Reports/**/main.xml')
+        success{
+            def spotbugs = scanForIssues tool: spotBugs(pattern: '**/Spotbug-Reports/**/main.xml')
         	publishIssues issues: [spotbugs] 
+        }
+
     }
 }
 
